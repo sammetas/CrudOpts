@@ -15,11 +15,20 @@ public class CrudService {
 
     private List<User> USERS= new ArrayList<>();
 
-     private static  AtomicInteger suserId= new AtomicInteger(0);
+    public CrudService() {
+        User defaultUser= new User();
+        defaultUser.setId(suserId.addAndGet(1));
+        defaultUser.setName("Default User");
+        defaultUser.setEmail("default@email.com");
+        this.USERS.add(defaultUser);
+    }
+
+    private static  AtomicInteger suserId= new AtomicInteger(0);
 
 
      @GetMapping("/")
      public List<User> getAllUser(){
+         System.out.println("Inside GET ");
          return USERS;
      }
 
